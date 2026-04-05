@@ -18,8 +18,6 @@ namespace AES.Client.Controllers
         {
             AESImplementation aes = new AESImplementation();
 
-            //byte[] encryptedText = Convert.FromBase64String(request.EncryptedMessage);
-
             string decryptedText = aes.Decrypt(request.EncryptedMessage, _key, _iv);
 
             if (string.Compare(_originalText, decryptedText, StringComparison.Ordinal) == 0)
