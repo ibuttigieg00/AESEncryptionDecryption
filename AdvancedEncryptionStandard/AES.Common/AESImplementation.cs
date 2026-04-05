@@ -31,24 +31,28 @@ namespace AES.Common
 
         public string Decrypt(byte[] cipheredText, byte[] key, byte[] iv)
         {
-            string originalText;
-
-            using (Aes aes = Aes.Create())
+            try
             {
-                ICryptoTransform decryptor = aes.CreateDecryptor(key, iv);
-
-                using (MemoryStream memoryStream = new MemoryStream(cipheredText))
+                using (Aes aes = Aes.Create())
                 {
-                    using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
+                    ICryptoTransform decryptor = aes.CreateDecryptor(key, iv);
+
+                    using (MemoryStream memoryStream = new MemoryStream(cipheredText))
                     {
-                        using (StreamReader streamReader = new StreamReader(cryptoStream))
+                        using (CryptoStream cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
                         {
-                            originalText = streamReader.ReadToEnd();
+                            using (StreamReader streamReader = new StreamReader(cryptoStream))
+                            {
+                                return streamReader.ReadToEnd();
+                            }
                         }
                     }
                 }
             }
-            return originalText;
+            catch
+            {
+                return null;
+            }
         }
     }
 }
