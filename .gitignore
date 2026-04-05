@@ -1,0 +1,10 @@
+*.dll
+*.pdb
+*.tmp
+*.cache
+*.vsidx
+/AdvancedEncryptionStandard/.vs
+/AdvancedEncryptionStandard/AdvancedEncryptionStandard/obj
+/AdvancedEncryptionStandard/AdvancedEncryptionStandard/bin
+/AdvancedEncryptionStandard/AES.Client/obj
+/AdvancedEncryptionStandard/AES.Common/obj
